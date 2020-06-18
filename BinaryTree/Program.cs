@@ -12,8 +12,8 @@ namespace BinaryTree
         {
             var pyramid = CreatePyramid();
 
-            if (pyramid == null)
-                throw new Exception("Pyramid not found");
+            if (pyramid == null || pyramid.Count == 0)
+                throw new Exception("Pyramid not found or has no data");
 
             var binaryTree = new Tree(pyramid);
 
