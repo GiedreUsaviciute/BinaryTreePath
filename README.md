@@ -1,5 +1,6 @@
 # BinaryTreePath
 Solution for finding odd-even paths through a binary tree
+Written by Giedre Usaviciute (sorry for the 2 git account setup)
 
 Task:
 
