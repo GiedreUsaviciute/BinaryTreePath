@@ -1,6 +1,7 @@
 ﻿using BinaryTree.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BinaryTree
@@ -21,6 +22,7 @@ namespace BinaryTree
             Console.ReadLine();
         }
 
+        //base data for pyramid when file not provided
         private static List<List<int>> CreatePyramid()
         {
             var pyramid = new List<List<int>>();
@@ -29,6 +31,24 @@ namespace BinaryTree
             pyramid.Add(new List<int> { 8, 9 });
             pyramid.Add(new List<int> { 1, 5, 9 });
             pyramid.Add(new List<int> { 4, 5, 2, 3 });
+
+            return pyramid;
+        }
+
+        //reads file and converts it into pyramid matrix
+        public static List<List<int>> CreatePyramid(string filePath)
+        {
+            var pyramid = new List<List<int>>();
+
+            if (string.IsNullOrWhiteSpace(filePath)) 
+                return pyramid;
+
+            string[] lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+                pyramid.Add(line.Split(' ').ToList().Select(int.Parse).ToList());
+            }
 
             return pyramid;
         }

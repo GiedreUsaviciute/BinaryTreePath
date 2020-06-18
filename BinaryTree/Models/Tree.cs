@@ -10,7 +10,7 @@ namespace BinaryTree.Models
         private int _maxBranchLength = 0;
         private Path _maxPath;
 
-
+        //construct binary tree from given pyramid matrix
         public Tree(List<List<int>> pyramid)
         {
             _root = null;
@@ -36,6 +36,7 @@ namespace BinaryTree.Models
             Insert(_root, node);
         }
 
+        //recursively inserts node where a child node is empty and valid
         private void Insert(Node root, Node node)
         {
             if (root.LeftChild == null)
@@ -71,6 +72,7 @@ namespace BinaryTree.Models
         {
             var previousNode = path.Count == 0 ? null : path?.Last();
 
+            //if bottom node reached calculate path length and compare to current max path
             if (node == null && previousNode != null && previousNode.Level == _maxBranchLength)
             {
                 var pathValue = path.Sum(node => node.Value);
@@ -83,6 +85,7 @@ namespace BinaryTree.Models
                 }
             }
 
+            //recursively iterate throug branches
             if (node != null && (previousNode == null || previousNode?.Even != node.Even))
             {
                 path.Add(node);
