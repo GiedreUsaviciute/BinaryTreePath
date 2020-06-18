@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace BinaryTree
 {
@@ -56,17 +55,32 @@ namespace BinaryTree
         {
             if (root.LeftChild == null)
             {
-                if (root.Level == node.Level - 1 && (root.Index == node.Index || root.Index == node.Index - 1)) root.LeftChild = node;
+                if (ValidateNode(root, node)) root.LeftChild = CopyNode(node);
             }
             else if (root.RightChild == null)
             {
-                if (root.Level == node.Level - 1 && (root.Index == node.Index || root.Index == node.Index - 1)) root.RightChild = node;
+                if (ValidateNode(root, node)) root.RightChild = CopyNode(node);
             }
             else
             {
                 Insert(root.LeftChild, node);
                 Insert(root.RightChild, node);
             }
+        }
+
+        public void FindMaxPath()
+        { 
+        
+        }
+
+        private static Node CopyNode(Node node)
+        {
+            return new Node { Value = node.Value, Index = node.Index, Level = node.Level };
+        }
+
+        private static bool ValidateNode(Node root, Node node)
+        {
+            return root.Level == node.Level - 1 && (root.Index == node.Index || root.Index == node.Index - 1);
         }
     }
 
